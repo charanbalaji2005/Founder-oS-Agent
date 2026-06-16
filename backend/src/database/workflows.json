@@ -1,0 +1,24 @@
+[
+  {
+    "id": "wf-1",
+    "name": "New Venture Setup Flow",
+    "trigger": "New Project Venture Initialized",
+    "steps": [
+      "Research Agent TAM Competitors",
+      "CEO Agent Monetization Model",
+      "Coding Agent Database Design"
+    ],
+    "active": true
+  },
+  {
+    "id": "wf-2",
+    "name": "GTM Growth Hack Loop",
+    "trigger": "Product MVP Ready",
+    "steps": [
+      "Creative Agent Style Guide",
+      "Marketing Agent Copywriting Campaign",
+      "Manager Agent Task Deployment"
+    ],
+    "active": false
+  }
+]

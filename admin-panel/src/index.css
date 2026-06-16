@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: #f9fafb;
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-3xl border border-gray-100 shadow-sm p-8;
+  }
+  .btn-primary {
+    @apply bg-gray-900 text-white px-6 py-3 rounded-2xl font-bold hover:bg-gray-800 transition-all active:scale-95 shadow-lg shadow-gray-200;
+  }
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-gray-50 hover:text-gray-900 transition-all font-bold text-sm uppercase tracking-wider;
+  }
+  .sidebar-link.active {
+    @apply bg-gray-900 text-white shadow-xl shadow-gray-200;
+  }
+}

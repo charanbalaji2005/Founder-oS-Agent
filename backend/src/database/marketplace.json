@@ -1,0 +1,32 @@
+[
+  {
+    "id": "hr",
+    "name": "HR Agent",
+    "role": "Employee Onboarding & Talent Optimization",
+    "installed": false
+  },
+  {
+    "id": "sales",
+    "name": "Sales Agent",
+    "role": "B2B Lead Scraping & Cold Outreach Sequences",
+    "installed": true
+  },
+  {
+    "id": "finance",
+    "name": "Finance Agent",
+    "role": "Runway Burn Rate Charts & Investor KPI Modeling",
+    "installed": true
+  },
+  {
+    "id": "legal",
+    "name": "Legal Agent",
+    "role": "Contracts, Terms, NDA Generation & Local Compliance",
+    "installed": true
+  },
+  {
+    "id": "analyst",
+    "name": "Data Analyst Agent",
+    "role": "SQL Queries, Amplitude Cohort Analytics & Metrics Reports",
+    "installed": false
+  }
+]

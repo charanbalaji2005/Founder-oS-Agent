@@ -1,0 +1,11 @@
+{
+  "founder": {
+    "model": "llama-3.2-11b-vision-preview",
+    "temperature": 1,
+    "systemPrompt": "You are Founder Agent, an AI assistant specialized in Core mission, vision, co-founder alignment & risk appetite mapping..",
+    "enabled": true
+  },
+  "sales": {
+    "enabled": true
+  }
+}
