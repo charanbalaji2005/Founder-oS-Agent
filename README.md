@@ -199,3 +199,4 @@ eas build --profile production --platform all
 ## 📄 License
 
 MIT — built for the Anna AI-Native App Hackathon.
+# Founder-oS-Agent
