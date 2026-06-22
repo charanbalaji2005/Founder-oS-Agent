@@ -655,26 +655,26 @@ export default function FindMessagingScreen() {
   };
 
   // Filter conversations/friends lists based on query
-  const filteredConversations = conversations.filter((c) => {
+  const filteredConversations = (Array.isArray(conversations) ? conversations : []).filter((c) => {
     if (c.type === "group") {
       return c.name?.toLowerCase().includes(searchQuery.toLowerCase());
     }
-    const partner = c.members.find((m) => m.id !== user?.id);
+    const partner = c.members?.find((m) => m.id !== user?.id);
     return (partner?.name || partner?.username || "").toLowerCase().includes(searchQuery.toLowerCase());
   });
 
-  const filteredFriends = friends.filter((f) =>
+  const filteredFriends = (Array.isArray(friends) ? friends : []).filter((f) =>
     (f.name || f.username || "").toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   // Dynamic message filter inside chat search
-  const filteredMessages = messages.filter((m) => {
+  const filteredMessages = (Array.isArray(messages) ? messages : []).filter((m) => {
     if (!chatSearchText.trim()) return true;
-    return m.content.toLowerCase().includes(chatSearchText.toLowerCase());
+    return m.content?.toLowerCase().includes(chatSearchText.toLowerCase());
   });
 
-  const pinnedMessages = messages.filter((m) => m.pinned === 1);
-  const mediaMessages = messages.filter((m) => m.mediaUrl !== null);
+  const pinnedMessages = (Array.isArray(messages) ? messages : []).filter((m) => m.pinned === 1);
+  const mediaMessages = (Array.isArray(messages) ? messages : []).filter((m) => m.mediaUrl !== null);
 
   // Main UI Render
   return (
@@ -794,7 +794,7 @@ export default function FindMessagingScreen() {
                             <Text style={styles.chatItemName} numberOfLines={1}>
                               {displayName}
                             </Text>
-                            {conv.lastMessage && (
+                            {conv.lastMessage?.createdAt && (
                               <Text style={styles.chatItemTime}>
                                 {new Date(conv.lastMessage.createdAt).toLocaleTimeString([], {
                                   hour: "2-digit",
@@ -1089,10 +1089,10 @@ export default function FindMessagingScreen() {
                           {/* Seen / Delivered ticks (only for own messages) */}
                           <View style={styles.messageMetaWrapper}>
                             <Text style={[styles.messageTime, { color: isOwnMessage ? "#E5E7EB" : "#9CA3AF" }]}>
-                              {new Date(msg.createdAt).toLocaleTimeString([], {
+                              {msg.createdAt ? new Date(msg.createdAt).toLocaleTimeString([], {
                                 hour: "2-digit",
                                 minute: "2-digit",
-                              })}
+                              }) : ""}
                             </Text>
                             {isOwnMessage && (
                               <View style={styles.tickContainer}>

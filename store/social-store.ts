@@ -110,9 +110,9 @@ export const useSocialStore = create<SocialStore>((set, get) => ({
     try {
       const res = await fetch(`${BACKEND_URL}/api/social/conversations/${userId}`);
       const data = await res.json();
-      set({ conversations: data || [], isLoading: false });
+      set({ conversations: Array.isArray(data) ? data : [], isLoading: false });
     } catch (e) {
-      set({ isLoading: false });
+      set({ isLoading: false, conversations: [] });
     }
   },
 
@@ -131,20 +131,24 @@ export const useSocialStore = create<SocialStore>((set, get) => ({
     try {
       const res = await fetch(`${BACKEND_URL}/api/social/conversations/${conversationId}/messages`);
       const data = await res.json();
-      set({ messages: data || [] });
-    } catch (e) {}
+      set({ messages: Array.isArray(data) ? data : [] });
+    } catch (e) {
+      set({ messages: [] });
+    }
   },
 
   fetchFriends: async (userId) => {
     try {
       const res = await fetch(`${BACKEND_URL}/api/social/friends/${userId}`);
       const data = await res.json();
-      const details = (data || []).map((f: any) => ({
+      const details = (Array.isArray(data) ? data : []).map((f: any) => ({
         ...f,
         status: get().onlineStatuses[f.id] || "offline"
       }));
       set({ friends: details });
-    } catch (e) {}
+    } catch (e) {
+      set({ friends: [] });
+    }
   },
 
   fetchRequests: async (userId) => {
@@ -152,10 +156,12 @@ export const useSocialStore = create<SocialStore>((set, get) => ({
       const res = await fetch(`${BACKEND_URL}/api/social/friends/requests/${userId}`);
       const data = await res.json();
       set({
-        incomingRequests: data.incoming || [],
-        outgoingRequests: data.outgoing || []
+        incomingRequests: Array.isArray(data?.incoming) ? data.incoming : [],
+        outgoingRequests: Array.isArray(data?.outgoing) ? data.outgoing : []
       });
-    } catch (e) {}
+    } catch (e) {
+      set({ incomingRequests: [], outgoingRequests: [] });
+    }
   },
 
   connectSocket: (userId) => {
