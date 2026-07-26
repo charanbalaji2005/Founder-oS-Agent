@@ -4,6 +4,8 @@
 
 FounderOS AI is a complete AI-native mobile app built for the **Anna AI-Native App Hackathon**. It helps entrepreneurs, students, and indie hackers transform raw startup ideas into actionable plans using a pipeline of 5 specialized AI agents powered by **Groq**.
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XnZs3Xmyo8Q?si=OAWK0elvkdGI9jkR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ---
 
 ## ✨ Features
