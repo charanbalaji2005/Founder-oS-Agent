@@ -1,204 +1,306 @@
 # 🚀 FounderOS AI — Your AI Startup Co-Founder
 
-> From Startup Idea to Launch Plan in Minutes with Your AI Co-Founder.
+> **Turn your startup idea into a complete launch strategy in minutes with your AI-powered co-founder.**
 
-FounderOS AI is a complete AI-native mobile app built for the **Anna AI-Native App Hackathon**. It helps entrepreneurs, students, and indie hackers transform raw startup ideas into actionable plans using a pipeline of 5 specialized AI agents powered by **Groq**.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XnZs3Xmyo8Q?si=OAWK0elvkdGI9jkR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+FounderOS AI is an AI-native mobile application built for the **Anna AI-Native App Hackathon**. It helps entrepreneurs, students, and indie hackers transform raw startup ideas into actionable business plans through a workflow of **five specialized AI agents**, powered by **Groq**.
 
 ---
 
-## ✨ Features
+## 🎥 Demo
 
-- **5 Specialized AI Agents** running sequentially via a LangGraph-style workflow:
-  1. 🔬 **Market Research Agent** — TAM/SAM/SOM, trends, customer segments
-  2. ⚔️ **Competitor Agent** — Competitor landscape, SWOT, market gaps
-  3. ⚡ **MVP Agent** — Core features, MVP scope, success metrics
-  4. 🗺️ **Roadmap Agent** — 90-day development roadmap (3 phases)
-  5. 🎯 **Launch Agent** — Go-to-market strategy, pricing, launch checklist
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=XnZs3Xmyo8Q" target="_blank">
+    <img src="https://img.youtube.com/vi/XnZs3Xmyo8Q/maxresdefault.jpg" alt="FounderOS AI Demo" width="700"/>
+  </a>
+</p>
 
-- **100% Groq-powered** — uses `Qwen3-32B` (research/planning) and `DeepSeek-R1-Distill-70B` (reasoning/strategy)
-- **Persistent local storage** of all generated startup plans
-- **Secure API key storage** via Expo SecureStore
-- **Guest mode** — no signup required
-- Built with **Expo SDK 54 + React Native + TypeScript**
+> **Watch the demo:** https://www.youtube.com/watch?v=XnZs3Xmyo8Q
+
+> **Note:** GitHub README files do **not** support embedded `<iframe>` videos. Use the thumbnail image above instead.
 
 ---
 
-## 🏗️ Tech Stack
+# ✨ Features
+
+## 🤖 AI-Powered Startup Planning
+
+FounderOS AI orchestrates **five specialized AI agents** in a LangGraph-inspired workflow:
+
+### 🔬 Market Research Agent
+- Market analysis
+- TAM / SAM / SOM estimation
+- Industry trends
+- Customer segmentation
+
+### ⚔️ Competitor Analysis Agent
+- Competitor research
+- SWOT analysis
+- Market gap identification
+- Competitive positioning
+
+### ⚡ MVP Planning Agent
+- Core feature prioritization
+- MVP scope definition
+- Success metrics
+- Technical recommendations
+
+### 🗺️ Roadmap Agent
+- 90-day development roadmap
+- Milestone planning
+- Sprint recommendations
+- Resource estimation
+
+### 🎯 Launch Strategy Agent
+- Go-to-market strategy
+- Pricing recommendations
+- Marketing channels
+- Product launch checklist
+
+---
+
+## 🚀 Additional Features
+
+- ✅ Powered entirely by **Groq LLMs**
+- ✅ Uses **Qwen3-32B** for research & planning
+- ✅ Uses **DeepSeek-R1-Distill-70B** for reasoning & strategy
+- ✅ Persistent local project storage
+- ✅ Secure API key storage with **Expo Secure Store**
+- ✅ Guest mode (no account required)
+- ✅ Offline-first architecture
+- ✅ Beautiful modern UI
+- ✅ Dark mode support
+- ✅ Built with Expo SDK 54 + React Native + TypeScript
+
+---
+
+# 🏗️ Tech Stack
 
 | Layer | Technology |
-|---|---|
+|--------|------------|
 | Frontend | Expo SDK 54, React Native, TypeScript, Expo Router |
 | UI | NativeWind, React Native Reusables, Lucide Icons |
-| State | Zustand (with persistence) |
+| State Management | Zustand (Persisted) |
 | Data Fetching | TanStack Query |
 | Forms | React Hook Form + Zod |
 | AI Workflow | LangGraph (`@langchain/langgraph`) |
-| LLM Provider | Groq API (Qwen3-32B + DeepSeek-R1-Distill-70B) |
-| Backend | Node.js + Express + TypeScript |
-| Database | SQLite (Drizzle ORM) / PostgreSQL-ready |
-| Storage | Expo Secure Store |
+| LLM Provider | Groq API (Qwen3-32B & DeepSeek-R1-Distill-70B) |
+| Backend | Node.js, Express, TypeScript |
+| Database | SQLite (Drizzle ORM), PostgreSQL Ready |
+| Secure Storage | Expo Secure Store |
 | Deployment | Expo EAS Build |
 
 ---
 
-## 📂 Project Structure
+# 📂 Project Structure
 
-```
+```text
 founderos-ai/
-├── app/                      # Expo Router screens
-│   ├── _layout.tsx
-│   ├── (tabs)/               # Bottom tab navigator
-│   │   ├── index.tsx         # Home / Dashboard
-│   │   ├── dashboard.tsx
-│   │   ├── roadmap.tsx
-│   │   ├── projects.tsx
-│   │   └── profile.tsx       # Settings & API key
-│   └── startup/               # Workflow screens
-│       ├── create.tsx        # Idea input + agent runner
-│       ├── research.tsx
-│       ├── competitors.tsx
-│       ├── mvp.tsx
-│       ├── roadmap.tsx
-│       └── launch.tsx
-├── agents/                    # AI agent definitions
+│
+├── app/
+│   ├── (tabs)/
+│   ├── startup/
+│   └── _layout.tsx
+│
+├── agents/
 │   ├── founder-agent.ts
 │   ├── market-agent.ts
 │   ├── competitor-agent.ts
 │   ├── mvp-agent.ts
 │   ├── roadmap-agent.ts
 │   └── launch-agent.ts
+│
 ├── workflows/
-│   └── founder-workflow.ts   # LangGraph orchestration
+│   └── founder-workflow.ts
+│
 ├── services/
-│   ├── groq.service.ts       # Groq API client + streaming
-│   ├── startup.service.ts    # Backend API client
-│   ├── roadmap.service.ts
-│   └── competitor.service.ts
-├── store/                     # Zustand stores
-│   ├── project-store.ts
-│   ├── auth-store.ts
-│   └── roadmap-store.ts
+│
 ├── hooks/
-│   ├── useWorkflow.ts
-│   ├── useProjects.ts
-│   ├── useRoadmap.ts
-│   └── useResearch.ts
+│
+├── store/
+│
 ├── components/
-│   ├── ui/                   # Button, Card, Input, Modal, Loader
-│   └── startup/              # IdeaInput, AgentCard, ResultViewer, etc.
-├── backend/                    # Express + SQLite backend (optional)
-│   ├── src/
-│   │   ├── index.ts
-│   │   ├── routes/ (projects, agents, users)
-│   │   └── database/ (schema, db)
-│   └── package.json
-├── types/index.ts
-├── constants/index.ts
-└── utils/ (markdown, validation, formatters)
+│
+├── backend/
+│
+├── types/
+│
+├── constants/
+│
+└── utils/
 ```
 
 ---
 
-## 🚀 Getting Started
+# 🚀 Getting Started
 
-### 1. Install dependencies
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/founderos-ai.git
+
+cd founderos-ai
+```
+
+---
+
+## 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 2. Get a Groq API Key
+or
 
-Sign up free at [console.groq.com](https://console.groq.com) and generate an API key (starts with `gsk_`).
+```bash
+yarn
+```
 
-### 3. Run the app
+---
+
+## 3. Configure Environment Variables
+
+Create a `.env` file.
+
+```env
+EXPO_PUBLIC_GROQ_API_KEY=gsk_xxxxxxxxxxxxxxxxxxxxxxxxx
+EXPO_PUBLIC_BACKEND_URL=http://localhost:3001
+```
+
+---
+
+## 4. Get a Groq API Key
+
+Create a free account at:
+
+https://console.groq.com
+
+Generate a new API key beginning with:
+
+```
+gsk_
+```
+
+---
+
+## 5. Run the Application
 
 ```bash
 npx expo start
 ```
 
-Scan the QR code with **Expo Go**, or press `w` for web, `i` for iOS simulator, `a` for Android emulator.
+Then choose:
 
-### 4. Add your Groq API Key in-app
-
-Open the app → **Profile tab → Groq API Key → Add Key**. The key is stored securely on-device using `expo-secure-store` and never leaves your device (unless you opt to use the optional backend).
+- 📱 Scan QR with Expo Go
+- 🤖 Press `a` for Android Emulator
+- 🍎 Press `i` for iOS Simulator
+- 🌐 Press `w` for Web
 
 ---
 
-## 🖥️ Optional Backend Setup
-
-The app works **fully offline-capable for AI calls** (calls Groq directly from the device). The included Express + SQLite backend is optional, for teams who want centralized project storage.
+# 🖥️ Optional Backend
 
 ```bash
 cd backend
+
 npm install
+
 cp .env.example .env
+
 npm run dev
 ```
 
-Then set `EXPO_PUBLIC_BACKEND_URL` in your `.env` to point to the backend (e.g. `http://localhost:3001`).
+---
 
-### Backend API Endpoints
+## Backend API
 
 | Method | Endpoint | Description |
-|---|---|---|
-| GET | `/api/projects` | List all projects |
-| GET | `/api/projects/:id` | Get project with all agent results |
-| POST | `/api/projects` | Create new project |
-| PUT | `/api/projects/:id/results` | Save agent results |
+|--------|----------|-------------|
+| GET | `/api/projects` | List projects |
+| GET | `/api/projects/:id` | Get project |
+| POST | `/api/projects` | Create project |
+| PUT | `/api/projects/:id/results` | Save results |
 | DELETE | `/api/projects/:id` | Delete project |
-| POST | `/api/agents/run` | Run a single agent |
-| POST | `/api/agents/run-all` | Run full 5-agent pipeline |
-| POST | `/api/agents/stream` | Streaming agent response (SSE) |
+| POST | `/api/agents/run` | Run single AI agent |
+| POST | `/api/agents/run-all` | Run full AI workflow |
+| POST | `/api/agents/stream` | Streaming responses |
 
 ---
 
-## 🤖 AI Agent Pipeline (LangGraph)
+# 🤖 AI Workflow
 
+```text
+                Startup Idea
+                     │
+                     ▼
+        Founder Agent (Coordinator)
+                     │
+                     ▼
+       🔬 Market Research Agent
+                     │
+                     ▼
+      ⚔️ Competitor Analysis Agent
+                     │
+                     ▼
+          ⚡ MVP Planning Agent
+                     │
+                     ▼
+        🗺️ Roadmap Planning Agent
+                     │
+                     ▼
+        🎯 Launch Strategy Agent
+                     │
+                     ▼
+         Review → Save → Dashboard
 ```
-User Startup Idea
-      ↓
-Founder Agent (coordinator)
-      ↓
-Market Research Agent  → Qwen3-32B
-      ↓
-Competitor Agent        → Qwen3-32B
-      ↓
-MVP Agent                → DeepSeek-R1-Distill-70B
-      ↓
-Roadmap Agent            → Qwen3-32B
-      ↓
-Launch Agent             → DeepSeek-R1-Distill-70B
-      ↓
-Human Review → Save Project → Dashboard
-```
-
-Each agent runs sequentially, with results streamed back to the UI and persisted to local storage (and optionally the backend database).
 
 ---
 
-## 📱 Building for Production (EAS)
+# 📱 Build for Production
+
+Install EAS CLI:
 
 ```bash
 npm install -g eas-cli
+```
+
+Login:
+
+```bash
 eas login
+```
+
+Android Preview Build:
+
+```bash
 eas build --profile preview --platform android
+```
+
+Production Build:
+
+```bash
 eas build --profile production --platform all
 ```
 
 ---
 
-## 🔒 Security Notes
+# 🔒 Security
 
-- Groq API keys are stored using `expo-secure-store` (hardware-backed keychain on iOS, EncryptedSharedPreferences on Android)
-- No API keys are ever transmitted to FounderOS servers
-- All project data is stored locally by default
+- API keys are stored securely using **Expo Secure Store**
+- No API keys are transmitted to FounderOS servers
+- Local-first project storage
+- Optional backend synchronization
+- Hardware-backed encryption where supported
 
 ---
 
-## 📄 License
+# 📄 License
 
-MIT — built for the Anna AI-Native App Hackathon.
-# Founder-oS-Agent
+Licensed under the **MIT License**.
+
+---
+
+# 🏆 Hackathon
+
+Built with ❤️ for the **Anna AI-Native App Hackathon**.
+
+FounderOS AI demonstrates how AI agents can collaborate to transform a simple startup idea into a structured business strategy within minutes.
